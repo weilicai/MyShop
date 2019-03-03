@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="demo" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginintercept" class="cn.itcast.interceptor.LoginInterceptor"></interceptor>
+		</interceptors>
+		<action name="goods_*" class="goodsAction" method="{1}">
+			<interceptor-ref name="loginintercept">
+				<param name="excludeMethods">show,toModelNo,search,color,selectColor,selectSize</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="list">/admin/product/list.jsp</result>
+			<result name="toUpdate">/admin/product/edit.jsp</result>
+			<result name="update" type="redirectAction">/goods_page</result>
+			<result name="delete" type="redirectAction">/goods_page</result>
+			<result name="toAdd">/admin/product/add.jsp</result>
+			<result name="add" type="redirectAction">/goods_page</result>
+			<result name="select">/admin/product/list.jsp</result>
+			<result name="show">/jsp/user/goodsShow.jsp</result>
+			<result name="toModelNo">/jsp/user/modelNo.jsp</result>
+			<result name="search">/jsp/user/goodsShow.jsp</result>
+			<result name="color" >/jsp/user/modelNo.jsp</result>
+			<result name="listPage">/admin/product/list.jsp</result>
+			<result name="page">/admin/product/list2.jsp</result>
+			<result name="login">/admin/welcome.jsp</result>
+		</action>
+		<action name="adm_*" class="admAction" method="{1}">
+			<result name="toLogin">/admin/home.jsp</result>
+			<result name="loginSuccess">/admin/home.jsp</result>
+			<result name="login" type="redirectAction">adm_toLogin</result>
+			<result name="logout">/index.jsp</result>
+		</action>
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="loginSuccess" type="redirectAction">goods_show</result>
+			<result name="login">/jsp/user/login.jsp</result>
+			<result name="tologin">/jsp/user/login.jsp</result>
+			<result name="toRegister">/jsp/user/register.jsp</result>
+			<result name="registerSuccess">/jsp/user/login.jsp</result>
+			<result name="register" type="redirectAction">user_toRegister</result>
+			<result name="logout" type="redirectAction">goods_show</result>
+		</action>
+		<action name="shopCar_*" class="shopCarAction" method="{1}">
+			<result name="deleteShopCar" type="redirectAction">shopCar_user</result>
+			<result name="add" type="redirectAction">shopCar_user</result>
+			<result name="list">/jsp/user/shopCar.jsp</result>
+			<result name="inc" type="redirectAction">shopCar_user</result>
+			<result name="dec" type="redirectAction">shopCar_user</result>
+			<result name="user">/jsp/user/shopCar.jsp</result>
+			<result name="erro">/jsp/user/login.jsp</result>
+		</action>
+		<action name="order_*" class="orderAction" method="{1}">
+			<interceptor-ref name="loginintercept">
+				<param name="excludeMethods">toBuy,userOrder,add,address</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="toBuy">/jsp/user/address.jsp</result>
+			<result name="add" type="redirectAction">shopCar_list</result>
+			<result name="show">/admin/order/list.jsp</result>
+			<result name="userOrder">/jsp/user/userOrder.jsp</result>
+			<result name="delete" type="redirectAction">order_show</result>
+			<result name="toUpdate">/admin/order/edit.jsp</result>
+			<result name="update" type="redirectAction">order_show</result>
+			<result name="login">/admin/welcome.jsp</result>
+		</action>
+	</package>
+	<package name="demo2" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginintercept" class="cn.itcast.interceptor.LoginInterceptor"></interceptor>
+		</interceptors>
+ 		<action name="category_*" class="categoryAction" method="{1}">
+ 			<interceptor-ref name="loginintercept">
+ 				<param name="excludeMethods">list</param>
+ 			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="findAll">/admin/category/list.jsp</result>
+			<result name="toAdd">/admin/category/add.jsp</result>
+			<result name="add" type="redirectAction">category_findAll</result>
+			<result name="edit">/admin/category/edit.jsp</result>
+			<result name="update" type="redirectAction">category_findAll</result>
+			<result name="delete" type="redirectAction">category_findAll</result>
+			<result name="login">/admin/welcome.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

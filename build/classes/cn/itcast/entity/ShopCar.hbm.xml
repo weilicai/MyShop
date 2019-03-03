@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.itcast.entity.ShopCar" table="t_shopcar">
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="modelNo" column="modelNo"></property>
+		<property name="img" column="img"></property>
+		<property name="name" column="name"></property>
+		<property name="size" column="size"></property>
+		<property name="color" column="color"></property>
+		<property name="price" column="price"></property>
+		<property name="quantity" column="quantity"></property>
+		<property name="amount" column="amount"></property>
+		<property name="username" column="username"></property>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
